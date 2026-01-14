@@ -1,18 +1,16 @@
 const express = require("express");
 const db = require("./db/db");
-
+const userRoutes = require("./routes/users");
 
 const app = express();
-
-// allow JSON requests
 app.use(express.json());
 
-// home route
+app.use("/api/users", userRoutes);
+
 app.get("/", (req, res) => {
   res.send("AeroPay backend running");
 });
 
-// health check route
 app.get("/health", (req, res) => {
   res.json({
     status: "ok",
@@ -21,7 +19,7 @@ app.get("/health", (req, res) => {
   });
 });
 
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () => {
   console.log("Server started on port " + PORT);
