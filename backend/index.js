@@ -3,6 +3,7 @@ const db = require("./db/db");
 const userRoutes = require("./routes/users");
 const authRoutes = require("./routes/auth");
 const walletRoutes = require("./routes/wallet");
+const paymentRoutes = require("./routes/payment");
 
 
 const app = express();
@@ -11,6 +12,7 @@ app.use(express.json());
 app.use("/api/users", userRoutes);
 app.use("/api/auth", authRoutes);
 app.use("/api/wallet", walletRoutes);
+app.use("/api/payment", paymentRoutes);
 
 app.get("/", (req, res) => {
   res.send("AeroPay backend running");
